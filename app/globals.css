@@ -57,3 +57,24 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateY(-100%) translateX(-100%);
+  }
+  100% {
+    transform: translateY(100%) translateX(100%);
+  }
+}

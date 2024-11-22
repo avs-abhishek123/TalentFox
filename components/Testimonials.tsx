@@ -3,21 +3,21 @@ import { Quote } from "lucide-react";
 
 const testimonials = [
   {
-    content: "This platform has revolutionized our placement process. We've seen a 40% increase in successful placements since implementing Talent Fox.",
-    author: "Dr. Sarah Chen",
-    role: "Head of Placements, Tech University",
+    content: "Talent Fox has transformed our placement process entirely. The AI-driven insights and tools have helped us achieve a 40% increase in successful placements. It’s a game-changer for our students and recruiters alike.",
+    author: "Dr. Neha B. Upadhayay",
+    role: "Deputy Head of Placements, IIIT Lucknow",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
   },
   {
-    content: "The AI-powered resume enhancement tool helped me create a professional resume that got me multiple interviews. Highly recommended!",
-    author: "James Wilson",
-    role: "Computer Science Graduate",
+    content: "The AI-powered resume builder is simply incredible! It helped me craft a standout resume that not only caught recruiters' attention but also secured me multiple interviews. I can't thank Talent Fox enough!",
+    author: "Abhishek Ranjan",
+    role: "Computer Science Graduate, NIT Rourkela",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
   },
   {
-    content: "As a recruiter, finding the right candidates has never been easier. The matching algorithm saves us countless hours in the screening process.",
-    author: "Lisa Thompson",
-    role: "HR Director, TechCorp",
+    content: "Talent Fox has been a game-changer for our campus placements. Our students are now securing offers from top companies, and the AI-powered tools have simplified the entire process for our placement team.",
+    author: "Dr. Ramesh Iyer",
+    role: "Dean of Placements, Bright Horizons Institute, Delhi",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
   }
 ];
@@ -39,7 +39,7 @@ export default function Testimonials() {
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <Card key={index} className="relative bg-white w-[400px]">
-              <CardContent className="pt-10 pb-8 px-10">
+              <CardContent className="pt-12 pb-8 px-10">
                 <Quote className="absolute top-3 left-3 h-8 w-8 text-primary/20" />
                 <p className="text-gray-700 mb-6">{testimonial.content}</p>
                 <div className="flex items-center gap-4">
