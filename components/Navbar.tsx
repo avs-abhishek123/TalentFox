@@ -14,7 +14,7 @@ export default function Navbar() {
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center">
             <BrainCircuit className="h-8 w-8 text-primary" />
-            <span className="ml-2 text-xl font-bold text-primary">TalentAI</span>
+            <span className="ml-2 text-xl font-bold text-primary">Talent Fox</span>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">

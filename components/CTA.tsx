@@ -14,10 +14,10 @@ export default function CTA() {
               Join thousands of institutions and students already benefiting from our AI-powered platform. Get started today and see the difference.
             </p>
             <div className="mt-6 flex max-w-md gap-x-4">
-              <Button variant="secondary" size="lg" className="gap-2">
+              <Button variant="outline" size="lg" className="text-primary hover:text-primary gap-2">
                 Get Started <ArrowRight className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg" className="text-white hover:text-primary">
+              <Button variant="outline" size="lg" className="text-primary hover:text-primary">
                 Contact Sales
               </Button>
             </div>

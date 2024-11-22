@@ -3,7 +3,7 @@ import { Quote } from "lucide-react";
 
 const testimonials = [
   {
-    content: "This platform has revolutionized our placement process. We've seen a 40% increase in successful placements since implementing TalentAI.",
+    content: "This platform has revolutionized our placement process. We've seen a 40% increase in successful placements since implementing Talent Fox.",
     author: "Dr. Sarah Chen",
     role: "Head of Placements, Tech University",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
@@ -32,15 +32,15 @@ export default function Testimonials() {
             Trusted by leading institutions
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            See what our users have to say about their experience with TalentAI
+            See what our users have to say about their experience with Talent Fox AI
           </p>
         </div>
         
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="relative bg-white">
-              <CardContent className="pt-10 pb-6 px-6">
-                <Quote className="absolute top-6 left-6 h-8 w-8 text-primary/20" />
+            <Card key={index} className="relative bg-white w-[400px]">
+              <CardContent className="pt-10 pb-8 px-10">
+                <Quote className="absolute top-3 left-3 h-8 w-8 text-primary/20" />
                 <p className="text-gray-700 mb-6">{testimonial.content}</p>
                 <div className="flex items-center gap-4">
                   <img
