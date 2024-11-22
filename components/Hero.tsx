@@ -64,7 +64,7 @@ export default function Hero() {
       <div className="absolute inset-0 overflow-hidden">
         {/* Large floating orb */}
         <GlassyObject
-          className="w-[800px] h-[800px] -left-24 -top-24"  // Increased size
+          className="w-[400px] h-[400px] -left-24 -top-24"  // Increased size
           animate={{
             x: [0, 30, 0],
             y: [0, 40, 0],
@@ -79,7 +79,7 @@ export default function Hero() {
         
         {/* Medium floating orb */}
         <GlassyObject
-          className="w-[600px] h-[600px] right-1/4 top-1/4"  // Increased size
+          className="w-[400px] h-[400px] right-1/4 top-1/4"  // Increased size
           animate={{
             x: [0, -20, 0],
             y: [0, 30, 0],
@@ -95,7 +95,7 @@ export default function Hero() {
         
         {/* Small floating orb */}
         <GlassyObject
-          className="w-[400px] h-[400px] right-20 bottom-32"  // Increased size
+          className="w-[300px] h-[300px] right-20 bottom-32"  // Increased size
           animate={{
             x: [0, 25, 0],
             y: [0, -30, 0],
@@ -111,7 +111,7 @@ export default function Hero() {
         
         {/* Extra small floating orb */}
         <GlassyObject
-          className="w-[300px] h-[300px] left-1/3 bottom-20"  // Increased size
+          className="w-[200px] h-[200px] left-1/3 bottom-20"  // Increased size
           animate={{
             x: [0, -20, 0],
             y: [0, 20, 0],
