@@ -23,7 +23,7 @@ const GlassyObject = ({ className, animate, transition }: GlassyObjectProps) => 
   <motion.div
     className={`absolute rounded-full bg-[#03c006] mix-blend-multiply filter blur-3xl opacity-20 ${className}`}
     animate={animate}
-    initial={animate}
+    initial={{ x: animate.x[0], y: animate.y[0], scale: animate.scale[0] }}
     transition={{
       ...transition,
       repeatType: "reverse",
@@ -64,7 +64,7 @@ export default function Hero() {
       <div className="absolute inset-0 overflow-hidden">
         {/* Large floating orb */}
         <GlassyObject
-          className="w-[500px] h-[500px] -left-24 -top-24"
+          className="w-[800px] h-[800px] -left-24 -top-24"  // Increased size
           animate={{
             x: [0, 30, 0],
             y: [0, 40, 0],
@@ -79,7 +79,7 @@ export default function Hero() {
         
         {/* Medium floating orb */}
         <GlassyObject
-          className="w-[300px] h-[300px] right-1/4 top-1/4"
+          className="w-[600px] h-[600px] right-1/4 top-1/4"  // Increased size
           animate={{
             x: [0, -20, 0],
             y: [0, 30, 0],
@@ -95,7 +95,7 @@ export default function Hero() {
         
         {/* Small floating orb */}
         <GlassyObject
-          className="w-[200px] h-[200px] right-20 bottom-32"
+          className="w-[400px] h-[400px] right-20 bottom-32"  // Increased size
           animate={{
             x: [0, 25, 0],
             y: [0, -30, 0],
@@ -111,7 +111,7 @@ export default function Hero() {
         
         {/* Extra small floating orb */}
         <GlassyObject
-          className="w-[150px] h-[150px] left-1/3 bottom-20"
+          className="w-[300px] h-[300px] left-1/3 bottom-20"  // Increased size
           animate={{
             x: [0, -20, 0],
             y: [0, 20, 0],
@@ -128,8 +128,8 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative pt-24 pb-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 lg:grid lg:grid-cols-2 lg:gap-24">
-          <div className="relative z-10 mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8 lg:grid lg:grid-cols-2 lg:gap-24">  {/* Increased max-width */}
+          <div className="relative z-10 mx-auto max-w-3xl lg:mx-0 lg:max-w-none">  {/* Increased max-width */}
             <div className="relative">
               <motion.h1 
                 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
@@ -189,7 +189,7 @@ export default function Hero() {
                   </div>
                 </div>
                 <img
-                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                  src="/api/placeholder/1000/800"  // Changed to placeholder image
                   alt="Students collaborating"
                   className="relative rounded-2xl shadow-2xl w-full h-auto"
                 />
