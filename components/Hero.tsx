@@ -189,7 +189,7 @@ export default function Hero() {
                   </div>
                 </div>
                 <img
-                  src="/api/placeholder/1000/800"  // Changed to placeholder image
+                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"  // Changed to placeholder image
                   alt="Students collaborating"
                   className="relative rounded-2xl shadow-2xl w-full h-auto"
                 />
