@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Briefcase, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface GlassyObjectProps {
   className: string;
@@ -154,10 +155,12 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <AnimatedButton />
-                <Button variant="outline" size="lg">
-                  Learn More
-                </Button>
+                <Link href="/auth/signup">
+                  <AnimatedButton />
+                </Link>
+                <Link href="#features">
+                  <Button variant="outline" size="lg">Learn More</Button>
+                </Link>
               </motion.div>
               <motion.div 
                 className="mt-10 flex items-center gap-8"

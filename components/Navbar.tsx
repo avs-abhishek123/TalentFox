@@ -21,8 +21,12 @@ export default function Navbar() {
             <Link href="#features" className="text-gray-600 hover:text-primary">Features</Link>
             <Link href="#how-it-works" className="text-gray-600 hover:text-primary">How it Works</Link>
             <Link href="#testimonials" className="text-gray-600 hover:text-primary">Testimonials</Link>
-            <Button variant="outline" className="mr-2">Sign In</Button>
-            <Button>Get Started</Button>
+            <Link href="/auth/signin">
+              <Button variant="outline" className="mr-2">Sign In</Button>
+            </Link>
+            <Link href="/auth/signup">
+              <Button>Get Started</Button>
+            </Link>
           </div>
 
           <div className="md:hidden">

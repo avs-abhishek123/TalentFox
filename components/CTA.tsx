@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const AnimatedButton = () => {
   return (
@@ -41,7 +42,9 @@ export default function CTA() {
               Join thousands of institutions and students already benefiting from our AI-powered platform. Get started today and see the difference.
             </p>
             <div className="mt-6 flex max-w-md gap-x-4">
-            <AnimatedButton />
+            <Link href="/auth/signup">
+              <AnimatedButton />
+            </Link>
 
               <Button variant="outline" size="lg" className="border-black text-primary hover:text-primary">
                 Contact Sales
