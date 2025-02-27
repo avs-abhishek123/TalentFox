@@ -1,6 +1,5 @@
 // app/dashboard/layout.tsx
 'use client';
-
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
@@ -18,6 +17,10 @@ import {
   Bell,
   Search,
   User,
+  BarChart,
+  CreditCard,
+  UserPlus,
+  MessageSquare
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -43,6 +46,11 @@ export default function DashboardLayout({
       ]
     : [
         { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+        { name: 'Check AI Scoring based on JD', href: '/dashboard/ai-scoring', icon: BarChart },
+        { name: 'Resume Builder', href: '/dashboard/resume-builder', icon: FileText },
+        { name: 'Buy More Credit', href: '/dashboard/buy-credit', icon: CreditCard },
+        { name: 'Refer Your Friend', href: '/dashboard/refer', icon: UserPlus },
+        { name: 'Contact Admin', href: '/dashboard/contact', icon: MessageSquare },
         { name: 'Profile', href: '/dashboard/profile', icon: User },
         { name: 'Applications', href: '/dashboard/applications', icon: FileText },
         { name: 'Settings', href: '/dashboard/settings', icon: Settings },
@@ -147,7 +155,6 @@ export default function DashboardLayout({
               >
                 <Bell className="h-6 w-6" />
               </button>
-
               <div className="relative ml-3">
                 <div className="flex items-center">
                   <Avatar className="h-8 w-8 rounded-full bg-primary text-white">
@@ -252,7 +259,6 @@ export default function DashboardLayout({
               >
                 <Bell className="h-6 w-6" />
               </button>
-
               <div className="relative ml-3">
                 <div className="flex items-center">
                   <Avatar className="h-8 w-8 rounded-full bg-primary text-white">
