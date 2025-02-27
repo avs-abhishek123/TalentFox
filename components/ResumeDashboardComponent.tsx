@@ -203,7 +203,7 @@ const ResumeDashboardComponent = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      <div className="max-w-6xl mx-auto p-4 sm:p-6">
+      <div className="max-w-6xl mx-auto pt-4 sm:pt-6">
         {/* Dashboard Header */}
         <div className="mb-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -567,7 +567,7 @@ const ResumeDashboardComponent = () => {
                   <h2 className="text-sm font-medium text-gray-600">Analytics</h2>
                 </CardHeader>
                 <CardContent className="p-4">
-                  <Tabs>
+                <Tabs defaultValue="overview">
                     <TabsList className="flex space-x-4 mb-4">
                       <TabsTrigger value="overview" className={`text-sm font-medium ${activeView === 'overview' ? 'text-blue-600' : 'text-gray-500'}`}>
                         Overview
