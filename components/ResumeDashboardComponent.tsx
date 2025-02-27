@@ -60,7 +60,7 @@ const ResumeDashboardComponent = () => {
   }, []);
 
   // Get score color based on value
-  const getScoreColor = (score) => {
+  const getScoreColor = (score: number) => {
     if (score >= 80) return 'bg-emerald-500';
     if (score >= 70) return 'bg-blue-500';
     if (score >= 60) return 'bg-amber-500';
@@ -68,7 +68,7 @@ const ResumeDashboardComponent = () => {
   };
 
   // Get score gradient based on value (for cards and backgrounds)
-  const getScoreGradient = (score) => {
+  const getScoreGradient = (score: number) => {
     if (score >= 80) return 'from-emerald-500 to-emerald-600';
     if (score >= 70) return 'from-blue-500 to-blue-600';
     if (score >= 60) return 'from-amber-500 to-amber-600';
@@ -76,7 +76,7 @@ const ResumeDashboardComponent = () => {
   };
 
   // Get status badge style
-  const getStatusBadge = (status) => {
+  const getStatusBadge = (status: string) => {
     switch(status) {
       case 'Excellent':
         return 'bg-emerald-100 text-emerald-800 border-emerald-200';
@@ -92,7 +92,7 @@ const ResumeDashboardComponent = () => {
   };
 
   // Handle sorting
-  const handleSort = (column) => {
+  const handleSort = (column: string) => {
     if (sortColumn === column) {
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
     } else {
@@ -102,7 +102,7 @@ const ResumeDashboardComponent = () => {
   };
 
   // Handle checkbox selection
-  const handleSelect = (id) => {
+  const handleSelect = (id : number) => {
     setSelectedResumes(prev => 
       prev.includes(id) 
         ? prev.filter(item => item !== id) 
@@ -120,7 +120,7 @@ const ResumeDashboardComponent = () => {
   };
 
   // Convert time string to comparable value for sorting
-  const extractTimeValue = (timeStr) => {
+  const extractTimeValue = (timeStr: string) => {
     const number = parseInt(timeStr.split(' ')[0]);
     const unit = timeStr.split(' ')[1];
 
@@ -151,6 +151,18 @@ const ResumeDashboardComponent = () => {
     });
   };
 
+  // Define a type for your resume item
+  type Resume = {
+    id: number;
+    title: string;
+    owner: string;
+    lastModified: string;
+    score: number;
+    status: string;
+    category: string;
+    featured: boolean;
+  };
+
   // Filter and sort the resumes
   const filteredAndSortedResumes = filterResumes().sort((a, b) => {
     if (sortColumn === 'lastModified') {
@@ -158,14 +170,15 @@ const ResumeDashboardComponent = () => {
       const timeB = extractTimeValue(b.lastModified);
       return sortDirection === 'asc' ? timeA - timeB : timeB - timeA;
     }
-
+  
     if (sortColumn === 'score') {
       return sortDirection === 'asc' ? a.score - b.score : b.score - a.score;
     }
-
-    const valA = a[sortColumn].toString().toLowerCase();
-    const valB = b[sortColumn].toString().toLowerCase();
-
+  
+    // TypeScript safe way to handle dynamic property access
+    const valA = a[sortColumn as keyof Resume]?.toString().toLowerCase() || '';
+    const valB = b[sortColumn as keyof Resume]?.toString().toLowerCase() || '';
+  
     return sortDirection === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA);
   });
 
@@ -561,111 +574,226 @@ const ResumeDashboardComponent = () => {
           </div>
             
             {/* Right Column - Analytics */}
-            <div className="lg:col-span-1">
-              <Card className="border border-gray-200 shadow-sm">
-                <CardHeader className="p-4 border-b border-gray-200 bg-white">
-                  <h2 className="text-sm font-medium text-gray-600">Analytics</h2>
-                </CardHeader>
-                <CardContent className="p-4">
-                <Tabs defaultValue="overview">
-                    <TabsList className="flex space-x-4 mb-4">
-                      <TabsTrigger value="overview" className={`text-sm font-medium ${activeView === 'overview' ? 'text-blue-600' : 'text-gray-500'}`}>
-                        Overview
-                      </TabsTrigger>
-                      <TabsTrigger value="scores" className={`text-sm font-medium ${activeView === 'scores' ? 'text-blue-600' : 'text-gray-500'}`}>
-                        Scores
-                      </TabsTrigger>
-                      <TabsTrigger value="activity" className={`text-sm font-medium ${activeView === 'activity' ? 'text-blue-600' : 'text-gray-500'}`}>
-                        Activity
-                      </TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="overview">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h3 className="text-lg font-bold text-gray-900">Score Distribution</h3>
-                          <div className="flex items-center mt-2">
-                            {analyticsData.scoreDistribution.map((data, i) => (
-                              <div key={i} className="flex flex-col items-center mr-4">
-                                <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold">
-                                  {data.count}
-                                </div>
-                                <span className="text-xs text-gray-500 mt-1">{data.range}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="flex items-center">
-                          <div className="flex flex-col items-center mr-4">
-                            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold">
-                              78
-                            </div>
-                            <span className="text-xs text-gray-500 mt-1">Average Score</span>
-                          </div>
-                          <div className="flex
-                            flex-col items-center">
-                            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold">
-                              85
-                            </div>
-                            <span className="text-xs text-gray-500 mt-1">Top Score</span>
-                          </div>
-                        </div>
+            {/* Right Column - Analytics - IMPROVED VERSION */}
+{/* Right Column - Analytics - MOBILE RESPONSIVE VERSION */}
+<div className="lg:col-span-1">
+  <Card className="border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200">
+    <CardHeader className="p-3 sm:p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+      <div className="flex items-center justify-between">
+        <h2 className="text-base sm:text-lg font-semibold text-gray-800 flex items-center">
+          <BarChart3 className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2 text-blue-600" />
+          Analytics Dashboard
+        </h2>
+        <Badge className="hidden sm:flex bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors cursor-pointer">
+          <Eye className="h-3 w-3 mr-1" /> 
+          View Full Report
+        </Badge>
+        <Button variant="ghost" size="sm" className="p-1 sm:hidden text-blue-700 hover:bg-blue-50">
+          <Eye className="h-4 w-4" />
+        </Button>
+      </div>
+    </CardHeader>
+    <CardContent className="p-0">
+      <Tabs defaultValue="overview" className="w-full">
+<div className="border-b border-gray-200 bg-gray-50 px-2 sm:px-4 py-1 sm:py-2">
+  <TabsList className="flex space-x-2">
+    <TabsTrigger value="overview" className="relative px-1 py-1 sm:py-2 text-xs sm:text-sm font-medium data-[state=active]:text-blue-700 data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-blue-700 text-gray-600 hover:text-blue-700 transition-colors">
+      <div className="flex items-center">
+        <Star className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-1.5" />
+        <span>Overview</span>
+      </div>
+    </TabsTrigger>
+    <TabsTrigger value="scores" className="relative px-1 py-1 sm:py-2 text-xs sm:text-sm font-medium data-[state=active]:text-blue-700 data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-blue-700 text-gray-600 hover:text-blue-700 transition-colors">
+      <div className="flex items-center">
+        <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-1.5" />
+        <span>Performance</span>
+      </div>
+    </TabsTrigger>
+    <TabsTrigger value="activity" className="relative px-1 py-1 sm:py-2 text-xs sm:text-sm font-medium data-[state=active]:text-blue-700 data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-blue-700 text-gray-600 hover:text-blue-700 transition-colors">
+      <div className="flex items-center">
+        <Clock className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-1.5" />
+        <span>Activity</span>
+      </div>
+    </TabsTrigger>
+  </TabsList>
+</div>
+        
+        {/* OVERVIEW TAB - Mobile Responsive */}
+        <TabsContent value="overview" className="p-3 sm:p-5 focus:outline-none">
+          <div className="space-y-4 sm:space-y-6">
+            <div>
+              <div className="flex justify-between items-center mb-2 sm:mb-4">
+                <h3 className="text-sm sm:text-base font-semibold text-gray-800 flex items-center">
+                  <Award className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-blue-600" />
+                  Score Distribution
+                </h3>
+                <span className="text-xs text-blue-600 font-medium cursor-pointer hover:underline">See details</span>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <div className="grid grid-cols-5 gap-1 sm:gap-2 w-full">
+                  {analyticsData.scoreDistribution.map((data, i) => (
+                    <div key={i} className="flex flex-col items-center">
+                      <div className={`h-14 sm:h-20 w-full rounded-lg bg-gradient-to-br ${
+                        i === 0 ? 'from-emerald-400 to-emerald-500' :
+                        i === 1 ? 'from-blue-400 to-blue-500' :
+                        i === 2 ? 'from-indigo-400 to-indigo-500' :
+                        i === 3 ? 'from-amber-400 to-amber-500' :
+                        'from-red-400 to-red-500'
+                      } flex items-center justify-center text-white font-bold shadow-sm text-xs sm:text-base`}>
+                        {data.count}
                       </div>
-                    </TabsContent>
-                    <TabsContent value="scores">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h3 className="text-lg font-bold text-gray-900">Top Improvements</h3>
-                          <div className="mt-2">
-                            {analyticsData.topImprovements.map((data, i) => (
-                              <div key={i} className="flex items-center justify-between py-2">
-                                <span className="text-sm text-gray-600">{data.category}</span>
-                                <span className="text-sm font-bold text-gray-900">{data.score}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-bold text-gray-900">Average Score</h3>
-                          <div className="flex items-center mt-2">
-                            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold">
-                              78
-                            </div>
-                            <span className="text-xs text-gray-500 ml-2">Average</span>
-                          </div>
-                        </div>
-                      </div>
-                    </TabsContent>
-                    <TabsContent value="activity">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h3 className="text-lg font-bold text-gray-900">Recent Activity</h3>
-                          <div className="mt-2">
-                            {analyticsData.recentActivity.map((data, i) => (
-                              <div key={i} className="flex items-center justify-between py-2">
-                                <div>
-                                  <span className="text-sm text-gray-600">{data.action}</span>
-                                  <span className="text-xs text-gray-400 ml-1">{data.time}</span>
-                                </div>
-                                <span className="text-sm text-blue-600">{data.resume}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-bold text-gray-900">Total Resumes</h3>
-                          <div className="flex items-center mt-2">
-                            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold">
-                              10
-                            </div>
-                            <span className="text-xs text-gray-500 ml-2">Total</span>
-                          </div>
-                        </div>
-                      </div>
-                    </TabsContent>
-                  </Tabs>
-                </CardContent>
-              </Card>
+                      <span className="text-[10px] sm:text-xs text-gray-500 mt-1 sm:mt-2 text-center">{data.range}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
+            
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 sm:p-4 border border-blue-100">
+              <div className="flex justify-between items-center">
+                <h3 className="text-sm sm:text-base font-semibold text-gray-800">Resume Insights</h3>
+                <Button size="sm" className="text-[10px] sm:text-xs h-7 sm:h-8 px-2 sm:px-3 bg-white text-blue-700 border border-blue-200 hover:bg-blue-50">
+                  View All
+                </Button>
+              </div>
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 mt-2 sm:mt-3">
+                <div className="bg-white rounded-lg p-2 sm:p-3 border border-gray-100 shadow-sm">
+                  <p className="text-[10px] sm:text-xs font-medium text-gray-500">Top Category</p>
+                  <p className="text-sm sm:text-base font-bold text-gray-800">Technical</p>
+                  <div className="mt-1 text-[10px] sm:text-xs text-blue-600">6 resumes</div>
+                </div>
+                <div className="bg-white rounded-lg p-2 sm:p-3 border border-gray-100 shadow-sm">
+                  <p className="text-[10px] sm:text-xs font-medium text-gray-500">Featured</p>
+                  <p className="text-sm sm:text-base font-bold text-gray-800">3 Resumes</p>
+                  <div className="mt-1 text-[10px] sm:text-xs text-amber-600">Avg. Score: 81</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </TabsContent>
+        
+        {/* PERFORMANCE TAB - Mobile Responsive */}
+        <TabsContent value="scores" className="p-3 sm:p-5 focus:outline-none">
+          <div className="space-y-4 sm:space-y-5">
+            <div>
+              <div className="flex justify-between items-center mb-2 sm:mb-3">
+                <h3 className="text-sm sm:text-base font-semibold text-gray-800 flex items-center">
+                  <Lightbulb className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-amber-500" />
+                  Areas for Improvement
+                </h3>
+                <span className="text-[10px] sm:text-xs text-blue-600 font-medium cursor-pointer hover:underline">Get tips</span>
+              </div>
+              
+              <div className="grid gap-2">
+                {analyticsData.topImprovements.map((data, i) => (
+                  <div key={i} className="flex items-center justify-between p-2 sm:p-3 bg-white rounded-lg border border-gray-200 hover:shadow-sm transition-shadow">
+                    <span className="text-xs sm:text-sm font-medium text-gray-700">{data.category}</span>
+                    <div className="flex items-center space-x-2 sm:space-x-3">
+                      <div className="w-16 sm:w-24 bg-gray-200 rounded-full h-1.5 sm:h-2 overflow-hidden">
+                        <div 
+                          className={`h-full rounded-full ${
+                            data.score >= 80 ? 'bg-emerald-500' :
+                            data.score >= 70 ? 'bg-blue-500' :
+                            data.score >= 60 ? 'bg-amber-500' :
+                            'bg-red-500'
+                          }`} 
+                          style={{ width: `${data.score}%` }} 
+                        ></div>
+                      </div>
+                      <span className={`text-xs sm:text-sm font-bold ${
+                        data.score >= 80 ? 'text-emerald-600' :
+                        data.score >= 70 ? 'text-blue-600' :
+                        data.score >= 60 ? 'text-amber-600' :
+                        'text-red-600'
+                      }`}>{data.score}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 sm:p-4 border border-blue-100">
+              <div className="flex items-center">
+                <div className="h-10 w-10 sm:h-14 sm:w-14 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-lg">
+                  +15%
+                </div>
+                <div className="ml-2 sm:ml-3">
+                  <p className="text-xs sm:text-sm font-medium text-gray-700">Score Trend</p>
+                  <p className="text-[10px] sm:text-xs text-gray-500">Your resume scores have improved</p>
+                  <p className="text-[10px] sm:text-xs font-medium text-blue-700">+15% in 3 months</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </TabsContent>
+        
+        {/* ACTIVITY TAB - Mobile Responsive */}
+        <TabsContent value="activity" className="p-3 sm:p-5 focus:outline-none">
+          <div className="space-y-4 sm:space-y-5">
+            <div>
+              <div className="flex justify-between items-center mb-2 sm:mb-3">
+                <h3 className="text-sm sm:text-base font-semibold text-gray-800 flex items-center">
+                  <Clock className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-blue-600" />
+                  Recent Activity
+                </h3>
+                <span className="text-[10px] sm:text-xs text-blue-600 font-medium cursor-pointer hover:underline">View all</span>
+              </div>
+              
+              <div className="relative pl-4 sm:pl-6 border-l-2 border-blue-200">
+                {analyticsData.recentActivity.slice(0, 2).map((data, i) => (
+                  <div key={i} className="mb-3 sm:mb-4 relative">
+                    <div className="absolute -left-[17px] sm:-left-[21px] h-3 w-3 sm:h-4 sm:w-4 rounded-full bg-blue-600 border-2 border-white"></div>
+                    <div className="bg-white rounded-lg border border-gray-200 p-2 sm:p-3 shadow-sm">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <span className="text-xs sm:text-sm font-medium text-gray-800">{data.action}</span>
+                          <div className="flex items-center mt-0.5 sm:mt-1">
+                            <Clock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-gray-400 mr-1" />
+                            <span className="text-[10px] sm:text-xs text-gray-500">{data.time}</span>
+                          </div>
+                        </div>
+                        <Badge className="text-[10px] sm:text-xs px-1.5 py-0.5 bg-blue-50 text-blue-700 hover:bg-blue-100">
+                          {data.resume.substring(0, 6)}...
+                        </Badge>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-2 sm:p-3 border border-indigo-100">
+                <div className="flex items-center">
+                  <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow">
+                    <Calendar className="h-4 w-4 sm:h-5 sm:w-5" />
+                  </div>
+                  <div className="ml-2 sm:ml-3">
+                    <p className="text-[10px] sm:text-xs font-medium text-gray-700">Next Review</p>
+                    <p className="text-[10px] sm:text-xs text-indigo-600">Mar 15, 2025</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg p-2 sm:p-3 border border-amber-100">
+                <div className="flex items-center">
+                  <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white shadow">
+                    <Lightbulb className="h-4 w-4 sm:h-5 sm:w-5" />
+                  </div>
+                  <div className="ml-2 sm:ml-3">
+                    <p className="text-[10px] sm:text-xs font-medium text-gray-700">Pro Tip</p>
+                    <p className="text-[10px] sm:text-xs text-amber-600 hover:underline cursor-pointer">Learn more</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </TabsContent>
+      </Tabs>
+    </CardContent>
+  </Card>
+</div>
           </div>
         </div>
       </div>

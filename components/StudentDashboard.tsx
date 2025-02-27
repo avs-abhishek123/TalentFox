@@ -42,7 +42,7 @@ const StudentDashboard = () => {
   ];
 
   // Sort function
-  const sortResumes = (column) => {
+const sortResumes = (column: string) => {
     if (sortedColumn === column) {
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
     } else {
@@ -54,16 +54,17 @@ const StudentDashboard = () => {
   // Sort the resumes
   const sortedResumes = [...resumes].sort((a, b) => {
     if (sortedColumn === 'lastModified') {
-      const extractTimeValue = (timeStr) => {
-        const number = parseInt(timeStr.split(' ')[0]);
-        const unit = timeStr.split(' ')[1];
-        
-        // Convert everything to days for comparison
-        if (unit.includes('day')) return number;
-        if (unit.includes('month')) return number * 30;
-        if (unit.includes('year')) return number * 365;
-        return number;
-      };
+     // Add type annotation for timeStr parameter
+const extractTimeValue = (timeStr: string) => {
+    const number = parseInt(timeStr.split(' ')[0]);
+    const unit = timeStr.split(' ')[1];
+    
+    // Rest of your function logic
+    if (unit.includes('day')) return number;
+    if (unit.includes('month')) return number * 30;
+    if (unit.includes('year')) return number * 365;
+    return number;
+  };
       
       const timeA = extractTimeValue(a.lastModified);
       const timeB = extractTimeValue(b.lastModified);
@@ -76,9 +77,9 @@ const StudentDashboard = () => {
     }
     
     // Default sort by title
-    const valA = a[sortedColumn].toString().toLowerCase();
-    const valB = b[sortedColumn].toString().toLowerCase();
-    
+    const valA = a.title.toLowerCase();
+    const valB = b.title.toLowerCase();
+        
     if (valA < valB) return sortDirection === 'asc' ? -1 : 1;
     if (valA > valB) return sortDirection === 'asc' ? 1 : -1;
     return 0;
