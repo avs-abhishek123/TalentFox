@@ -21,7 +21,8 @@ import {
   Star,
   StarHalf,
   Calendar,
-  Link
+  Link,
+  Mail
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
