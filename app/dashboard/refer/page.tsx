@@ -91,7 +91,7 @@ export default function ReferFriendPage() {
   return (
     <div className="p-1 sm:p-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold">Refer Your Friends</h1>
+        <h1 className="text-2xl font-bold">Refer & Earn</h1>
         <p className="text-muted-foreground">Invite friends and earn free credits when they join</p>
       </div>
 

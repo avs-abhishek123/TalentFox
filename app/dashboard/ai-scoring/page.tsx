@@ -234,7 +234,7 @@ export default function AIScoringPage() {
             </CardContent>
             <CardFooter>
               <Button className="w-full" variant="outline">
-                Buy More Credits
+                Get More Creditss
               </Button>
             </CardFooter>
           </Card>

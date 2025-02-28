@@ -42,18 +42,18 @@ export default function DashboardLayout({
         { name: 'Students', href: '/dashboard/students', icon: Users },
         { name: 'Companies', href: '/dashboard/companies', icon: Building },
         { name: 'Jobs', href: '/dashboard/jobs', icon: FileText },
-        { name: 'Settings', href: '/dashboard/settings', icon: Settings },
+        { name: 'Preferences & Settings', href: '/dashboard/settings', icon: Settings },
       ]
     : [
         { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
-        { name: 'Check AI Scoring based on JD', href: '/dashboard/ai-scoring', icon: BarChart },
+        { name: 'AI Score Analysis', href: '/dashboard/ai-scoring', icon: BarChart },
         { name: 'Resume Builder', href: '/dashboard/resume-builder', icon: FileText },
-        { name: 'Buy More Credit', href: '/dashboard/buy-credit', icon: CreditCard },
-        { name: 'Refer Your Friend', href: '/dashboard/refer', icon: UserPlus },
-        { name: 'Contact Admin', href: '/dashboard/contact', icon: MessageSquare },
-        { name: 'Profile', href: '/dashboard/profile', icon: User },
-        { name: 'Applications', href: '/dashboard/applications', icon: FileText },
-        { name: 'Settings', href: '/dashboard/settings', icon: Settings },
+        { name: 'Get More Credits', href: '/dashboard/buy-credit', icon: CreditCard },
+        { name: 'Refer & Earn', href: '/dashboard/refer', icon: UserPlus },
+        { name: 'Help Center', href: '/dashboard/contact', icon: MessageSquare },
+        { name: 'My Account', href: '/dashboard/profile', icon: User },
+        { name: 'My Applications', href: '/dashboard/applications', icon: FileText },
+        { name: 'Preferences & Settings', href: '/dashboard/settings', icon: Settings },
       ];
 
   const getInitials = (name: string = '') => {

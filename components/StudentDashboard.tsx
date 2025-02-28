@@ -118,7 +118,7 @@ const extractTimeValue = (timeStr: string) => {
             <div className="py-2 px-3 rounded-md bg-gray-100 flex items-center gap-2 font-medium text-primary cursor-pointer">
               <div className="w-1 h-8 bg-primary rounded-full"></div>
               <BarChart className="h-5 w-5" /> 
-              <span>Check AI Scoring based on JD</span>
+              <span>AI Score Analysis</span>
             </div>
             <div className="py-2 px-3 font-medium text-gray-800 flex items-center gap-2 cursor-pointer">
               <FileText className="h-5 w-5" /> 
@@ -126,15 +126,15 @@ const extractTimeValue = (timeStr: string) => {
             </div>
             <div className="py-2 px-3 font-medium text-gray-800 flex items-center gap-2 cursor-pointer">
               <PieChart className="h-5 w-5" /> 
-              <span>Buy More Credit</span>
+              <span>Get More Credits</span>
             </div>
             <div className="py-2 px-3 font-medium text-gray-800 flex items-center gap-2 cursor-pointer">
               <User className="h-5 w-5" /> 
-              <span>Refer Your Friend</span>
+              <span>Refer & Earn</span>
             </div>
             <div className="mt-6 py-2 px-3 font-medium text-gray-800 flex items-center gap-2 cursor-pointer">
               <FileText className="h-5 w-5" /> 
-              <span>Contact Admin</span>
+              <span>Help Center</span>
             </div>
           </nav>
         </div>

@@ -94,7 +94,7 @@ export default function BuyCreditPage() {
   return (
     <div className="p-1 sm:p-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold">Buy More Credits</h1>
+        <h1 className="text-2xl font-bold">Get More Creditss</h1>
         <p className="text-muted-foreground">Purchase credits to analyze your resumes against job descriptions</p>
       </div>
 
