@@ -20,7 +20,13 @@ import {
   BarChart,
   CreditCard,
   UserPlus,
-  MessageSquare
+  MessageSquare,
+  PieChart,
+  Calendar,
+  FolderOpen,
+  Video,
+  ActivitySquare,
+  Handshake
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -42,6 +48,17 @@ export default function DashboardLayout({
         { name: 'Students', href: '/dashboard/students', icon: Users },
         { name: 'Companies', href: '/dashboard/companies', icon: Building },
         { name: 'Jobs', href: '/dashboard/jobs', icon: FileText },
+        { name: 'AI Scoring of All Students', href: '/dashboard/ai-scoring-all-students', icon: BarChart },
+        { name: 'Analytics & Reports', href: '/dashboard/analytics', icon: PieChart },
+        { name: 'Events Calendar', href: '/dashboard/events', icon: Calendar },
+        { name: 'Industry Partners', href: '/dashboard/partners', icon: Handshake },
+        { name: 'Student Feedback', href: '/dashboard/feedback', icon: MessageSquare },
+        { name: 'Resource Hub', href: '/dashboard/resources', icon: FolderOpen },
+        { name: 'Placement Team', href: '/dashboard/team', icon: UserPlus },
+        { name: 'Notifications', href: '/dashboard/notifications', icon: Bell },
+        { name: 'Alumni Network', href: '/dashboard/alumni', icon: Users },
+        { name: 'Mock Interviews', href: '/dashboard/mock-interviews', icon: Video },
+        { name: 'Skill Gap Analysis', href: '/dashboard/skill-gap', icon: ActivitySquare },
         { name: 'Preferences & Settings', href: '/dashboard/settings', icon: Settings },
       ]
     : [
